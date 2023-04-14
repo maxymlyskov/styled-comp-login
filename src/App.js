@@ -2,6 +2,9 @@ import Home from "components/pages/Home";
 import Login from "components/pages/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+import LightTheme from "themes/light";
+import DarkTheme from "themes/dark";
+import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -13,14 +16,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = {
-  primaryColor: "#f8049c",
-  secondaryColor: "#fdd54f",
-};
-
 function App() {
+  const [theme, setTheme] = useState(LightTheme);
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider
+      theme={{
+        ...theme,
+        setTheme: () => {
+          setTheme((s) => (s.id === "light" ? DarkTheme : LightTheme));
+        },
+      }}
+    >
       <GlobalStyle />
       <BrowserRouter>
         <Routes>

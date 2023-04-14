@@ -23,16 +23,16 @@ const PasswordInputWrapper = styled.div`
   display: flex;
 `;
 
+const PasswordInputStyled = styled(Input).attrs(() => ({
+  type: "password",
+  placeholder: "Password",
+}))`
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+`;
+
 export function PasswordInput(props) {
   const [showPassword, setShowPassword] = useState(false);
-
-  const PasswordInputStyled = styled(Input).attrs(() => ({
-    type: showPassword ? "text" : "password",
-    placeholder: "Password",
-  }))`
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  `;
 
   return (
     <>
@@ -46,6 +46,7 @@ export function PasswordInput(props) {
           {showPassword ? "Hide" : "Show"}
         </ToggleButton>
       </PasswordInputWrapper>
+      {showPassword && <div>{props.value}</div>}
     </>
   );
 }

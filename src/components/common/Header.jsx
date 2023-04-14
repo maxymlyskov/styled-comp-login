@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as ReactRouterDomLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const HeaderWrapper = styled.header`
@@ -12,8 +13,46 @@ const HeaderWrapper = styled.header`
   background: #eeeeee;
 `;
 
+const Menu = styled.nav`
+  display: flex;
+  position: relative;
+  width: initial;
+  border-bottom: none;
+  margin: auto 0 auto auto;
+  font-family: "Open Sans";
+  background: none;
+  left: initial;
+  top: initial;
+`;
+
+const Link = ({ isActive, children, ...props }) => {
+  return <ReactRouterDomLink {...props}>{children}</ReactRouterDomLink>;
+};
+
+const StyledLink = styled(Link)`
+  padding: 4px 8px;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  margin: auto 0;
+  font-weight: ${(p) => (p.isActive ? "bold" : "")};
+`;
+
 function Header() {
-  return <HeaderWrapper>Header</HeaderWrapper>;
+  const { pathname } = useLocation();
+  return (
+    <HeaderWrapper>
+      <Menu>
+        <StyledLink to="/" isActive={pathname === "/"}>
+          Home
+        </StyledLink>
+
+        <StyledLink to="/login" isActive={pathname === "/login"}>
+          Login
+        </StyledLink>
+      </Menu>
+    </HeaderWrapper>
+  );
 }
 
 export default Header;

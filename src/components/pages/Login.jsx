@@ -1,4 +1,10 @@
-import { PageLayout, Input, PasswordInput, Button } from "components/common";
+import {
+  PageLayout,
+  Input,
+  PasswordInput,
+  Button,
+  Spinner,
+} from "components/common";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -54,17 +60,23 @@ function Login() {
     <PageLayout>
       <h1>Login</h1>
       <Form onSubmit={handleSubmit}>
-        <Input
-          value={formFields.username}
-          onChange={handleInputChange}
-          name="username"
-          placeholder="Username"
-        />
-        <PasswordInput
-          value={formFields.password}
-          onChange={handleInputChange}
-          name="password"
-        />
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Input
+              value={formFields.username}
+              onChange={handleInputChange}
+              name="username"
+              placeholder="Username"
+            />
+            <PasswordInput
+              value={formFields.password}
+              onChange={handleInputChange}
+              name="password"
+            />
+          </>
+        )}
         <Button large type="sumbit" disabled={loading}>
           {loading ? "Loading..." : "Login"}
         </Button>

@@ -18,6 +18,7 @@ function App() {
       <div>
         <h1>Styled components</h1>
         <Button>Test</Button>
+        <Button secondary>Test</Button>
       </div>
     </>
   );

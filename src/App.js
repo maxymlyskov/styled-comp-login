@@ -1,8 +1,7 @@
-import { Button } from "components/common";
 import Home from "components/pages/Home";
 import Login from "components/pages/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -14,9 +13,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const theme = {
+  primaryColor: "#f8049c",
+  secondaryColor: "#fdd54f",
+};
+
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
@@ -24,7 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </ThemeProvider>
   );
 }
 

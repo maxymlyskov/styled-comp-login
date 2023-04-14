@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Project made using Styled components
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Website: styled-comp-login.vercel.app
 
 ## Available Scripts
 
